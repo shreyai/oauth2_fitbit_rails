@@ -1,9 +1,8 @@
 module Oauth2Rails
   class Response
 
-    def initialize(response, options = {})
+    def initialize(response)
       @far_resp = response
-
     end
 
     def status
@@ -18,16 +17,24 @@ module Oauth2Rails
       @far_resp.body
     end
 
-    def json_response
+    def json_body
       JSON.parse @far_resp.body
     end
 
     def errors
-      json_response['errors'][0] if status != 200
+      json_body['errors'][0] if status != 200
     end
 
     def error_message
       errors['message'] if errors
+    end
+
+    def refresh_token
+      json_body['access_token']
+    end
+
+    def access_token
+      json_body['refresh_token']
     end
 
   end
