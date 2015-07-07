@@ -1,3 +1,5 @@
+require 'oauth2_rails/errors'
+
 module Oauth2Rails
   class Base
 
@@ -49,20 +51,6 @@ module Oauth2Rails
         else ; return Response.new(response)
       end
 
-    end
-
-    def api_call(user, destination)
-      begin
-        call(:get, destination, user: user.access_token)
-      rescue FitbitOauth2::Errors::Unauthorized
-        refresh(user)
-        call(:get, destination, user: user.access_token)
-      end
-    end
-
-    def refresh(user)
-      response = call(:post, "#{@token_path}?grant_type=refresh_token&refresh_token=#{user.refresh_token}")
-      user.update!(access_token: response.access_token, refresh_token: response.refresh_token)
     end
 
   end

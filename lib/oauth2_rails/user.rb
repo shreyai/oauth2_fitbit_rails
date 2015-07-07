@@ -1,11 +1,17 @@
-require 'base'
-
 module Oauth2Rails
   class User
 
     def initialize(profile_body, token_body = [])
       @token    = token_body
       @profile  = profile_body
+    end
+
+    def json_profile
+      @profile
+    end
+
+    def json_tokens
+      @token
     end
 
     def profile

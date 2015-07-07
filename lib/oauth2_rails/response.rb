@@ -1,3 +1,5 @@
+require 'json'
+
 module Oauth2Rails
   class Response
 
