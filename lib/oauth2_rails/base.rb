@@ -4,9 +4,11 @@ module Oauth2Rails
   class Base
 
     def initialize(options = {})
-      raise Oauth2Rails::Errors::InvalidArgument, 'Must instantiate oauth_id and oauth_secret' if options[:oauth_id].nil? && options[:oauth_secret].nil?
-      @oauth_id       = options[:oauth_id]       || '229MB3'
-      @oauth_secret   = options[:oauth_secret]   || '63b9c42d78061f6eec4a29e206341dc5'
+      if options[:oauth_id].nil? && options[:oauth_secret].nil?
+        raise Oauth2Rails::Errors::InvalidArgument, 'Must instantiate oauth_id and oauth_secret'
+      end
+      @oauth_id       = options[:oauth_id]
+      @oauth_secret   = options[:oauth_secret]
       @redirect_uri   = options[:redirect_uri]   || 'http://localhost:3000/oauth2_callbacks/fitbit'
       @authorize_site = options[:authorize_site] || 'https://www.fitbit.com'
       @authorize_path = options[:authorize_path] || '/oauth2/authorize'
