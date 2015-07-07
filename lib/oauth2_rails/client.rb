@@ -4,8 +4,8 @@ require 'oauth2_rails/user'
 module Oauth2Rails
   class Client < Base
 
-    def initialize(user)
-      super
+    def initialize(user, options = {})
+      super(options)
       @user = user
     end
 
