@@ -4,11 +4,8 @@ module Oauth2Rails
   class Base
 
     def initialize(options = {})
-      if options[:oauth_id].nil? && options[:oauth_secret].nil?
-        raise Oauth2Rails::Errors::InvalidArgument, 'Must instantiate oauth_id and oauth_secret'
-      end
-      @oauth_id       = options[:oauth_id]
-      @oauth_secret   = options[:oauth_secret]
+      @oauth_id       = options[:oauth_id]       || OAUTH2_RAILS_ID
+      @oauth_secret   = options[:oauth_secret]   || OAUTH2_RAILS_SECRET
       @redirect_uri   = options[:redirect_uri]   || 'http://localhost:3000/oauth2_callbacks/fitbit'
       @authorize_site = options[:authorize_site] || 'https://www.fitbit.com'
       @authorize_path = options[:authorize_path] || '/oauth2/authorize'
@@ -36,21 +33,22 @@ module Oauth2Rails
         auth_header = "Basic #{encoded}"
       end
 
-      response = connection(site).send(action) do |req|
+      call = connection(site).send(action) do |req|
         req.url destination
         req.headers['Content-Type']   = 'application/x-www-form-urlencoded'
         req.headers['Authorization']  = auth_header
         req.body = options[:body]
       end
 
+      response = Response.new(call)
       case response.status
-        when 400 ; raise Oauth2Rails::Errors::BadRequest,      "400 #{get_error_message(response)}"
-        when 404 ; raise Oauth2Rails::Errors::NotFound,        "404 #{get_error_message(response)}"
-        when 409 ; raise Oauth2Rails::Errors::Conflict,        "409 #{get_error_message(response)}"
-        when 500 ; raise Oauth2Rails::Errors::InternalServer,  "500 #{get_error_message(response)}"
-        when 502 ; raise Oauth2Rails::Errors::BadGateway,      "502 #{get_error_message(response)}"
-        when 401 ; raise Oauth2Rails::Errors::Unauthorized,    "401 #{get_error_message(response)}"
-        else ; return Response.new(response)
+        when 400 ; raise Oauth2Rails::Errors::BadRequest,      "400 #{response.error_message}"
+        when 404 ; raise Oauth2Rails::Errors::NotFound,        "404 #{response.error_message}"
+        when 409 ; raise Oauth2Rails::Errors::Conflict,        "409 #{response.error_message}"
+        when 500 ; raise Oauth2Rails::Errors::InternalServer,  "500 #{response.error_message}"
+        when 502 ; raise Oauth2Rails::Errors::BadGateway,      "502 #{response.error_message}"
+        when 401 ; raise Oauth2Rails::Errors::Unauthorized,    "401 #{response.error_message}"
+        else ; response
       end
 
     end

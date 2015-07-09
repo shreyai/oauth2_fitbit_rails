@@ -36,7 +36,7 @@ module Oauth2Rails
     end
 
     def access_token
-      json_body['refresh_token']
+      json_body['access_token']
     end
 
   end
