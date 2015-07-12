@@ -26,8 +26,12 @@ module Oauth2Rails
       @token['refresh_token']
     end
 
+    def expires_every
+      @token['expires_in']
+    end
+
     def id
-      @profile['user']['encodedId']
+      Base64.decode64(@profile['user']['encodedId'])
     end
 
     def full_name

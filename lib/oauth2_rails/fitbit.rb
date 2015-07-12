@@ -7,7 +7,7 @@ module Oauth2Rails
     ## => PROFILE
     # https://api.fitbit.com/1/user/-/profile.json
     def profile
-      User.new(api_call('/1/user/-/profile.json'))
+      User.new(api_call('/1/user/-/profile.json').json_body)
     end
 
     def raw_profile
