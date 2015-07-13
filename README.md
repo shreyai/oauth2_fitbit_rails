@@ -1,8 +1,6 @@
 # Oauth2Rails
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/oauth2_rails`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A gem that currently provides support for the Fitbit API using Oauth2 protocol.
 
 ## Installation
 
@@ -20,17 +18,8 @@ Or install it yourself as:
 
     $ gem install oauth2_rails
 
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
+One project I would be very interested in is extracting this to a more general framework, that works with most clients on rails. For example, I'm sure the Fitbit flow is a little different, so it would not work always with other providers.
 
 1. Fork it ( https://github.com/[my-github-username]/oauth2_rails/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
