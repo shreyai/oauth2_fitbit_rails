@@ -31,7 +31,7 @@ module Oauth2Rails
     end
 
     def id
-      Base64.decode64(@profile['user']['encodedId'])
+      @profile['user']['encodedId']
     end
 
     def full_name
