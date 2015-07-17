@@ -4,6 +4,7 @@ module Oauth2Rails
   class Auth < Base
 
     def initialize(options = {})
+      @state = options[:state]
       super(options)
     end
 
@@ -12,7 +13,7 @@ module Oauth2Rails
     #       redirect_uri=http%3A%2F%2Fexample.com%2Fcallback&
     #       scope=activity%20nutrition%20heartrate
     def authorize_url
-      body = { response_type: 'code', client_id: @oauth_id, redirect_uri: @redirect_uri, scope: @scope }
+      body = { response_type: 'code', client_id: @oauth_id, redirect_uri: @redirect_uri, scope: @scope, state: @state }
       connection(@authorize_site).build_url(@authorize_path, body).to_s
     end
 
