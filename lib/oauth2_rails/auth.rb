@@ -24,8 +24,7 @@ module Oauth2Rails
     def get_token(code)
       body = { grant_type: 'authorization_code', client_id: @oauth_id, redirect_uri: @redirect_uri, code: code }
       tokens  = call(:post, @token_path, body: body)
-      profile = call(:get, '/1/user/-/profile.json', user: tokens.access_token)
-      User.new(profile.json_body, tokens.json_body)
+      User.new(tokens.json_body)
     end
 
   end

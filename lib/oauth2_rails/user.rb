@@ -1,33 +1,11 @@
 module Oauth2Rails
-  class User
-
-    def initialize(profile_body, token_body = [])
-      @token    = token_body
-      @profile  = profile_body
+  class Profile
+    def initialize(profile)
+      @profile = profile
     end
 
-    def json_profile
+    def json_response
       @profile
-    end
-
-    def json_tokens
-      @token
-    end
-
-    def profile
-      @profile
-    end
-
-    def access_token
-      @token['access_token']
-    end
-
-    def refresh_token
-      @token['refresh_token']
-    end
-
-    def expires_every
-      @token['expires_in']
     end
 
     def id
@@ -57,6 +35,31 @@ module Oauth2Rails
     def about_me
       @profile['user']['aboutMe']
     end
+  end
 
+  class User
+    def initialize(auth)
+      @token = auth
+    end
+
+    def json_response
+      @token
+    end
+
+    def id
+      @token['user_id']
+    end
+
+    def access_token
+      @token['access_token']
+    end
+
+    def refresh_token
+      @token['refresh_token']
+    end
+
+    def expires_every
+      @token['expires_in']
+    end
   end
 end
