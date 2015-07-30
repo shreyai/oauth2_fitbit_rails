@@ -6,7 +6,7 @@ module Oauth2Rails
     def initialize(options = {})
       @oauth_id       = options[:oauth_id]       || OAUTH2_RAILS_ID
       @oauth_secret   = options[:oauth_secret]   || OAUTH2_RAILS_SECRET
-      @redirect_uri   = options[:redirect_uri]   || 'http://localhost:3000/oauth2_callbacks/fitbit'
+      @redirect_uri   = options[:redirect_uri]   || OAUTH2_RAILS_CALLBACK
       @authorize_site = options[:authorize_site] || 'https://www.fitbit.com'
       @authorize_path = options[:authorize_path] || '/oauth2/authorize'
       @api_site       = options[:api_site]       || 'https://api.fitbit.com'
