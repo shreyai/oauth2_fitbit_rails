@@ -32,11 +32,15 @@ module Oauth2Rails
     end
 
     def refresh_token
-      json_body['access_token']
+      json_body['refresh_token']
     end
 
     def access_token
       json_body['access_token']
+    end
+
+    def expires_every
+      json_body['expires_in']
     end
 
   end
