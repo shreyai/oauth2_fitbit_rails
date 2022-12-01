@@ -1,6 +1,6 @@
 require 'json'
 
-module Oauth2Rails
+module Oauth2FitbitRails
   class Response
 
     def initialize(response)

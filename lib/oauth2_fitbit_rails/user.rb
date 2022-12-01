@@ -1,4 +1,4 @@
-module Oauth2Rails
+module Oauth2FitbitRails
   class Profile
     def initialize(profile)
       @profile = profile

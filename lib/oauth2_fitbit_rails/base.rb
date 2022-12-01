@@ -1,6 +1,6 @@
-require 'oauth2_rails/errors'
+require 'oauth2_fitbit_rails/errors'
 
-module Oauth2Rails
+module Oauth2FitbitRails
   class Base
 
     def initialize(options = {})
@@ -42,12 +42,12 @@ module Oauth2Rails
 
       response = Response.new(call)
       case response.status
-        when 400 ; raise Oauth2Rails::Errors::BadRequest,      "400 #{response.error_message}"
-        when 404 ; raise Oauth2Rails::Errors::NotFound,        "404 #{response.error_message}"
-        when 409 ; raise Oauth2Rails::Errors::Conflict,        "409 #{response.error_message}"
-        when 500 ; raise Oauth2Rails::Errors::InternalServer,  "500 #{response.error_message}"
-        when 502 ; raise Oauth2Rails::Errors::BadGateway,      "502 #{response.error_message}"
-        when 401 ; raise Oauth2Rails::Errors::Unauthorized,    "401 #{response.error_message}"
+        when 400 ; raise Oauth2FitbitRails::Errors::BadRequest,      "400 #{response.error_message}"
+        when 404 ; raise Oauth2FitbitRails::Errors::NotFound,        "404 #{response.error_message}"
+        when 409 ; raise Oauth2FitbitRails::Errors::Conflict,        "409 #{response.error_message}"
+        when 500 ; raise Oauth2FitbitRails::Errors::InternalServer,  "500 #{response.error_message}"
+        when 502 ; raise Oauth2FitbitRails::Errors::BadGateway,      "502 #{response.error_message}"
+        when 401 ; raise Oauth2FitbitRails::Errors::Unauthorized,    "401 #{response.error_message}"
         else ; response
       end
 

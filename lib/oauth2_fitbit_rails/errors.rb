@@ -1,4 +1,4 @@
-module Oauth2Rails
+module Oauth2FitbitRails
   module Errors
     # 400 Bad Request    | Any case where either endpoint doesn't exist,
     #                    |  resource path parameters are invalid, POST request

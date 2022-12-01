@@ -1,8 +1,8 @@
-require 'oauth2_rails/base'
-require 'oauth2_rails/client'
-require 'oauth2_rails/user'
+require 'oauth2_fitbit_rails/base'
+require 'oauth2_fitbit_rails/client'
+require 'oauth2_fitbit_rails/user'
 
-module Oauth2Rails
+module Oauth2FitbitRails
   class Fitbit < Client
     ## => PROFILE
     # https://api.fitbit.com/1/user/-/profile.json
@@ -106,7 +106,7 @@ module Oauth2Rails
     def distance_and_steps_series(from_date,to_date)
       json_data_distance=tracker_distance_series(from_date,to_date).json_body
       json_data_steps=tracker_steps_series(from_date,to_date).json_body
-      raise(Oauth2Rails::Errors::BadRequest, json_data_distance['errors']) if json_data_distance['errors'].present?
+      raise(Oauth2FitbitRails::Errors::BadRequest, json_data_distance['errors']) if json_data_distance['errors'].present?
       distances = json_data_distance["activities-tracker-distance"]
       steps = json_data_steps["activities-tracker-steps"]
       return distances, json_data_distance, steps, json_data_steps

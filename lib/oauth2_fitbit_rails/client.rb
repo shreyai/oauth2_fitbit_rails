@@ -1,7 +1,7 @@
-require 'oauth2_rails/base'
-require 'oauth2_rails/user'
+require 'oauth2_fitbit_rails/base'
+require 'oauth2_fitbit_rails/user'
 
-module Oauth2Rails
+module Oauth2FitbitRails
   class Client < Base
 
     def initialize(user, options = {})
@@ -12,7 +12,7 @@ module Oauth2Rails
     def api_call(destination)
       begin
         call(:get, destination, user: @user.access_token)
-      rescue Oauth2Rails::Errors::Unauthorized
+      rescue Oauth2FitbitRails::Errors::Unauthorized
         refresh
         call(:get, destination, user: @user.access_token)
       end

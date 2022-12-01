@@ -1,6 +1,6 @@
-require 'oauth2_rails/base'
+require 'oauth2_fitbit_rails/base'
 
-module Oauth2Rails
+module Oauth2FitbitRails
   class Auth < Base
 
     def initialize(options = {})

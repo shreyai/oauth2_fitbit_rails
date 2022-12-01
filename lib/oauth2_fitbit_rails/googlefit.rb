@@ -1,8 +1,8 @@
-require 'oauth2_rails/base'
-require 'oauth2_rails/client'
-require 'oauth2_rails/user'
+require 'oauth2_fitbit_rails/base'
+require 'oauth2_fitbit_rails/client'
+require 'oauth2_fitbit_rails/user'
 
-module Oauth2Rails
+module Oauth2FitbitRails
   class Googlefit < Client
     
     def steps_data(start,time)

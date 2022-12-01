@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'oauth2_rails/version'
+require 'oauth2_fitbit_rails/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "oauth2_rails"
-  spec.version       = Oauth2Rails::VERSION
+  spec.name          = "oauth2_fitbit_rails"
+  spec.version       = Oauth2FitbitRails::VERSION
   spec.authors       = ["shreya"]
   spec.email         = ["shreya@appsimpact.com"]
 
   spec.summary       = "Oauth2 Rails based client for Fitbit specifically."
-  spec.homepage      = "https://github.com/shreyai/fitbit_authentication_user"
+  spec.homepage      = "https://github.com/shreyai/oauth2_fitbit_rails"
   spec.license       = 'MIT'
 
   spec.files = Dir.chdir(__dir__) do
