@@ -61,5 +61,60 @@ module Oauth2Rails
     def recent_activites
       api_call("/1/user/-/activities/recent.json")
     end
+
+    def activity_summary(date)
+      date=date.to_date.to_s
+      api_call("/1/user/-/activities/date/#{date}.json")
+    end
+
+    ## => Distance Data of Given Period
+    def tracker_distance_series(from_date,to_date)
+      api_call("/1/user/-/activities/tracker/distance/date/#{from_date}/#{to_date}.json")
+    end
+
+    ## => Steps Data of Given Period
+    def tracker_steps_series(from_date,to_date)
+      api_call("/1/user/-/activities/tracker/steps/date/#{from_date}/#{to_date}.json")
+    end
+
+    ## => Activity Calories Data of Given Period
+    def tracker_activity_calories(from_date,to_date)
+    	# api_call("/1/user/-/activities/calories/date/#{from_date}/#{to_date}.json")
+    	api_call("/1/user/-/activities/tracker/activityCalories/date/#{from_date}/#{to_date}.json")
+    end
+
+    class FitbitDataNotFound < StandardError
+    end
+
+    def tracker_distance(date)
+      json_data=activity_summary(date).json_body
+      distances = json_data['summary']["distances"]
+      distances.each do |data|
+        if data["activity"]=="tracker"
+          return data['distance'],json_data
+        end
+      end
+      raise FitbitDataNotFound 
+    end
+
+    def distance_series(from_date,to_date)
+      json_data=tracker_distance_series(from_date,to_date).json_body
+      distances = json_data["activities-tracker-distance"]
+      return distances,json_data
+    end
+
+    def distance_and_steps_series(from_date,to_date)
+      json_data_distance=tracker_distance_series(from_date,to_date).json_body
+      json_data_steps=tracker_steps_series(from_date,to_date).json_body
+      raise(Oauth2Rails::Errors::BadRequest, json_data_distance['errors']) if json_data_distance['errors'].present?
+      distances = json_data_distance["activities-tracker-distance"]
+      steps = json_data_steps["activities-tracker-steps"]
+      return distances, json_data_distance, steps, json_data_steps
+    end
+    
+    def get_user_activity_calories(from_date,to_date)
+    	json_data_calorie = tracker_activity_calories(from_date,to_date).json_body
+    	return json_data_calorie["activities-tracker-activityCalories"]
+    end
   end
 end

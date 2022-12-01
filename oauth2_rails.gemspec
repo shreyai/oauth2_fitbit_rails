@@ -6,18 +6,23 @@ require 'oauth2_rails/version'
 Gem::Specification.new do |spec|
   spec.name          = "oauth2_rails"
   spec.version       = Oauth2Rails::VERSION
-  spec.authors       = ["Colin Walker"]
-  spec.email         = ["cjwalker@sfu.ca"]
+  spec.authors       = ["shreya"]
+  spec.email         = ["shreya@appsimpact.com"]
 
-  spec.summary       = %q{Oauth2 Rails based client for Fitbit specifically.}
-  spec.homepage      = "https://github.com/ColDog/oauth2-fitbit-rails"
+  spec.summary       = "Oauth2 Rails based client for Fitbit specifically."
+  spec.homepage      = "https://github.com/shreyai/fitbit_authentication_user"
+  spec.license       = 'MIT'
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.files = Dir.chdir(__dir__) do
+    `git ls-files -z`.split("\n").reject do |f|
+      (f == __FILE__) || f.match(%r{\A(?:(?:bin|test|spec|features)/|\.(?:git|travis|circleci)|appveyor)})
+    end
+  end
   spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "faraday", ">= 0.7.0"
+  spec.add_runtime_dependency 'faraday', '~> 0.7', '>= 0.7.0'
   spec.add_development_dependency "bundler", "~> 1.9"
   spec.add_development_dependency "rake", "~> 10.0"
 end

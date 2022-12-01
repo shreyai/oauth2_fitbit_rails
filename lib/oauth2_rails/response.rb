@@ -24,23 +24,23 @@ module Oauth2Rails
     end
 
     def errors
-      json_body['errors'][0] if status != 200
+      json_body['errors'][0] if status != 200  rescue nil
     end
 
     def error_message
-      errors['message'] if errors
+      errors['message'] if errors  rescue nil
     end
 
     def refresh_token
-      json_body['refresh_token']
+      json_body['refresh_token']  rescue nil
     end
 
     def access_token
-      json_body['access_token']
+      json_body['access_token'] rescue nil
     end
 
     def expires_every
-      json_body['expires_in']
+      json_body['expires_in'] rescue nil
     end
 
   end
