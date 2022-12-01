@@ -11,7 +11,7 @@ module Oauth2FitbitRails
       @authorize_path = options[:authorize_path] || '/oauth2/authorize'
       @api_site       = options[:api_site]       || 'https://api.fitbit.com'
       @token_path     = options[:token_path]     || '/oauth2/token'
-      @scope          = options[:scope]          || 'heartrate'
+      @scope          = options[:scope]          || 'activity profile'
     end
 
     def connection(url)
