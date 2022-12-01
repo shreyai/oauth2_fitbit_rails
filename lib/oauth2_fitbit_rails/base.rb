@@ -6,7 +6,7 @@ module Oauth2FitbitRails
     def initialize(options = {})
       @oauth_id       = options[:oauth_id]       || '239359'
       @oauth_secret   = options[:oauth_secret]   || 'a22305522c49e899c589ef6ce87c0c14'
-      @redirect_uri   = options[:redirect_uri]   || 'https://ddd3-2405-201-300b-70fb-12a5-77bc-f040-d73c.ngrok.io/auth/fitbit_oauth2/callback'
+      @redirect_uri   = options[:redirect_uri]   || 'https://cefb-2405-201-300b-70fb-2b8d-be7b-ea33-4185.ngrok.io/auth/fitbit_oauth2/callback'
       @authorize_path = options[:authorize_path] || '/oauth2/authorize'
       @api_site       = options[:api_site]       || 'https://api.fitbit.com'
       @token_path     = options[:token_path]     || '/oauth2/token'
