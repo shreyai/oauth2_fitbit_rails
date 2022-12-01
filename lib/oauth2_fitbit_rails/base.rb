@@ -4,9 +4,9 @@ module Oauth2FitbitRails
   class Base
 
     def initialize(options = {})
-      @oauth_id       = options[:oauth_id]       || '239359'
-      @oauth_secret   = options[:oauth_secret]   || 'a22305522c49e899c589ef6ce87c0c14'
-      @redirect_uri   = options[:redirect_uri]   || 'https://ddd3-2405-201-300b-70fb-12a5-77bc-f040-d73c.ngrok.io/auth/fitbit_oauth2/callback'
+      @oauth_id       = options[:oauth_id]       || '238VB8'
+      @oauth_secret   = options[:oauth_secret]   || '6c625f9f039ee569f9378d4e05476bf0'
+      @redirect_uri   = options[:redirect_uri]   || 'https://strolldev.isleofmiles.net/auth/fitbit_oauth2/callback'
       @authorize_site = options[:authorize_site] || 'https://www.fitbit.com'
       @authorize_path = options[:authorize_path] || '/oauth2/authorize'
       @api_site       = options[:api_site]       || 'https://api.fitbit.com'
